@@ -256,7 +256,7 @@ const Navigation = () => {
               </NavLink>
             ))}
             <ResumeButton
-              href="/resume.pdf"
+              href="https://drive.google.com/file/d/1olbnlC6H7CHaYaMt8VsYHkoRV7I44qR7/view?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
               initial={{ opacity: 0, y: -20 }}
@@ -316,6 +316,17 @@ const Navigation = () => {
                   {item.name}
                 </MobileNavLink>
               ))}
+              <ResumeButton
+                href="https://drive.google.com/file/d/YOUR_FILE_ID/view"
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: navItems.length * 0.1 }}
+                style={{ marginTop: "1rem" }}
+              >
+                Resume
+              </ResumeButton>
             </MobileMenu>
           </>
         )}

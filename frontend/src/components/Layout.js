@@ -72,10 +72,9 @@ const Layout = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate minimum loading time of 2-3 seconds
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 2500);
+    }, 3000);
 
     return () => clearTimeout(timer);
   }, []);
