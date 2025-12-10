@@ -88,16 +88,37 @@ const NavLink = styled(motion.a)`
 
 const ResumeButton = styled(motion.a)`
   padding: ${({ theme }) => theme.spacing.sm} ${({ theme }) => theme.spacing.md};
-  border: 1px solid ${({ theme }) => theme.colors.text};
+  border: 2px solid ${({ theme }) => theme.colors.primary};
   border-radius: ${({ theme }) => theme.borderRadius.sm};
-  color: ${({ theme }) => theme.colors.text};
+  color: ${({ theme }) => theme.colors.primary};
   font-size: ${({ theme }) => theme.fontSizes.sm};
   font-family: ${({ theme }) => theme.fonts.mono};
   cursor: pointer;
-  transition: all ${({ theme }) => theme.animations.fast} ease;
+  transition: all ${({ theme }) => theme.animations.medium} ease;
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: ${({ theme }) => theme.colors.primary};
+    transition: left ${({ theme }) => theme.animations.medium} ease;
+    z-index: -1;
+  }
 
   &:hover {
-    background: rgba(255, 255, 255, 0.1);
+    color: ${({ theme }) => theme.colors.background};
+    border-color: ${({ theme }) => theme.colors.primary};
+    box-shadow: 0 0 20px rgba(187, 134, 252, 0.4);
+
+    &::before {
+      left: 0;
+    }
   }
 `;
 

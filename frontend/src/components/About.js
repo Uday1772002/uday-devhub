@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import profileImg from "../images/uday.jpeg";
 
 const AboutSection = styled.section`
   min-height: 100vh;
@@ -76,6 +77,11 @@ const Paragraph = styled.p`
       color: ${({ theme }) => theme.colors.text};
     }
   }
+
+  .highlight {
+    color: ${({ theme }) => theme.colors.primary};
+    font-weight: 600;
+  }
 `;
 
 const SkillsTitle = styled.h3`
@@ -136,16 +142,18 @@ const ImageWrapper = styled.div`
   }
 `;
 
-const ProfileImage = styled.div`
+const ProfileImage = styled.img`
   width: 100%;
   aspect-ratio: 1;
-  background: ${({ theme }) => theme.colors.surface};
+  object-fit: cover;
   border-radius: ${({ theme }) => theme.borderRadius.md};
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: ${({ theme }) => theme.fontSizes["6xl"]};
-  color: ${({ theme }) => theme.colors.textMuted};
+  display: block;
+  filter: grayscale(0%);
+  transition: filter ${({ theme }) => theme.animations.medium} ease;
+
+  ${ImageWrapper}:hover & {
+    filter: grayscale(0%);
+  }
 `;
 
 const ImageBorder = styled.div`
@@ -201,22 +209,35 @@ const About = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <Paragraph>
-              Hello! My name is Jayaram and I enjoy creating things that live on
-              the internet. My interest in web development started back in 2020
-              when I decided to try building custom websites — turns out hacking
-              together projects taught me a lot about HTML, CSS & JavaScript!
+              Hello! I'm Jayaram, a{" "}
+              <span className="highlight">Software Engineer</span> passionate
+              about building scalable web applications and solving complex
+              problems. My development journey started in 2020 at{" "}
+              <span className="highlight">BML Munjal University</span>, where I
+              discovered my love for creating things that live on the internet.
             </Paragraph>
 
             <Paragraph>
-              Fast-forward to today, and I've had the privilege of working at{" "}
-              <a href="#">a startup</a>, <a href="#">a corporation</a>, and{" "}
-              <a href="#">a digital agency</a>. My main focus these days is
-              building accessible, inclusive products and digital experiences.
+              I'm certified as a{" "}
+              <span className="highlight">Google Associate Cloud Engineer</span>{" "}
+              and{" "}
+              <span className="highlight">
+                AWS Solutions Architect Associate
+              </span>
+              . Currently, I'm sharpening my data structures and algorithms
+              skills, building side projects like{" "}
+              <span className="highlight">TechTreads</span> (a high-performance
+              blogging platform) and a RAG-based document analysis system, while
+              exploring new opportunities in software engineering.
             </Paragraph>
 
             <Paragraph>
-              I also recently launched a course that covers everything you need
-              to build modern web applications with the latest technologies.
+              When I'm not coding, you'll find me grinding LeetCode problems (
+              <span className="highlight">240+ solved</span> so far),
+              experimenting with new tech stacks, or staying active at the gym.
+              I was a finalist at{" "}
+              <span className="highlight">Smart India Hackathon 2023</span> and
+              Google Code Jam India.
             </Paragraph>
 
             <div>
@@ -237,7 +258,7 @@ const About = () => {
             transition={{ duration: 0.6, delay: 0.4 }}
           >
             <ImageWrapper>
-              <ProfileImage>👤</ProfileImage>
+              <ProfileImage src={profileImg} alt="Jayaram Uday" />
             </ImageWrapper>
             <ImageBorder />
           </ImageContainer>

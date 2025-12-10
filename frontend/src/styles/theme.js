@@ -1,23 +1,23 @@
 export const theme = {
   colors: {
-    primary: "#ffffff",
-    secondary: "#e5e5e5",
-    accent: "#808080",
-    background: "#0a0a0a",
-    surface: "#1a1a1a",
-    surfaceLight: "#2a2a2a",
+    primary: "#bb86fc",
+    secondary: "#666666",
+    accent: "#e0e0e0",
+    background: "#121212",
+    surface: "#1e1e1e",
+    surfaceLight: "#2d2d2d",
     text: "#ffffff",
-    textSecondary: "#b0b0b0",
-    textMuted: "#707070",
-    gradient: "linear-gradient(135deg, #ffffff 0%, #e5e5e5 50%, #b0b0b0 100%)",
+    textSecondary: "#b3b3b3",
+    textMuted: "#808080",
+    gradient: "linear-gradient(135deg, #bb86fc 0%, #9d5dfc 50%, #7f3dfc 100%)",
     gradientSubtle:
-      "linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(229,229,229,0.05) 50%, rgba(176,176,176,0.05) 100%)",
+      "linear-gradient(135deg, rgba(187,134,252,0.05) 0%, rgba(157,93,252,0.05) 50%, rgba(127,61,252,0.05) 100%)",
   },
   fonts: {
     main: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
     heading:
       '"Space Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-    mono: '"Fira Code", "Courier New", monospace',
+    mono: '"JetBrains Mono", "Fira Code", "Courier New", monospace',
   },
   fontSizes: {
     xs: "0.75rem",

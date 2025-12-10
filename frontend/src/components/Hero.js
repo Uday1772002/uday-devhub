@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 
@@ -11,12 +11,45 @@ const HeroSection = styled.section`
   padding: ${({ theme }) => theme.spacing["2xl"]}
     ${({ theme }) => theme.spacing.lg};
   overflow: hidden;
+
+  // Animated gradient mesh background
+  &::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+        circle at 20% 50%,
+        rgba(187, 134, 252, 0.08) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        circle at 80% 80%,
+        rgba(187, 134, 252, 0.05) 0%,
+        transparent 50%
+      );
+    animation: meshMove 20s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  @keyframes meshMove {
+    0%,
+    100% {
+      transform: translate(0, 0) rotate(0deg);
+    }
+    50% {
+      transform: translate(-5%, -5%) rotate(5deg);
+    }
+  }
 `;
 
 const HeroContent = styled.div`
-  max-width: 1200px;
+  max-width: 900px;
   width: 100%;
   z-index: 2;
+  text-align: left;
 `;
 
 const GlitchWrapper = styled.div`
@@ -30,10 +63,17 @@ const MainTitle = styled(motion.h1)`
     8vw,
     ${({ theme }) => theme.fontSizes["7xl"]}
   );
-  font-weight: 700;
+  font-weight: 800;
   line-height: 1.1;
   margin-bottom: ${({ theme }) => theme.spacing.md};
-  color: ${({ theme }) => theme.colors.text};
+  background: linear-gradient(
+    135deg,
+    ${({ theme }) => theme.colors.primary},
+    ${({ theme }) => theme.colors.accent}
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   position: relative;
   display: inline-block;
 `;
@@ -67,57 +107,47 @@ const CTAContainer = styled(motion.div)`
   display: flex;
   gap: ${({ theme }) => theme.spacing.md};
   flex-wrap: wrap;
+  justify-content: flex-start;
 `;
 
 const PrimaryButton = styled(motion.a)`
   padding: ${({ theme }) => theme.spacing.md} ${({ theme }) => theme.spacing.xl};
-  background: ${({ theme }) => theme.colors.text};
+  background: ${({ theme }) => theme.colors.primary};
   color: ${({ theme }) => theme.colors.background};
   font-size: ${({ theme }) => theme.fontSizes.lg};
   font-weight: 600;
-  border-radius: ${({ theme }) => theme.borderRadius.lg};
+  border-radius: 50px;
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  box-shadow: ${({ theme }) => theme.shadows.glow};
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(255, 255, 255, 0.3),
-      transparent
-    );
-    transition: left ${({ theme }) => theme.animations.slow} ease;
-  }
-
-  &:hover::before {
-    left: 100%;
-  }
+  box-shadow: 0 10px 30px rgba(187, 134, 252, 0.3);
+  transition: all 0.3s ease;
 
   &:hover {
-    box-shadow: ${({ theme }) => theme.shadows.glowStrong};
+    background: ${({ theme }) => theme.colors.text};
+    color: ${({ theme }) => theme.colors.background};
+    box-shadow: 0 15px 40px rgba(187, 134, 252, 0.5);
     transform: translateY(-2px);
+  }
+
+  span {
+    position: relative;
+    z-index: 1;
   }
 `;
 
 const SecondaryButton = styled(motion.a)`
   padding: ${({ theme }) => theme.spacing.md} ${({ theme }) => theme.spacing.xl};
   background: transparent;
-  color: ${({ theme }) => theme.colors.text};
+  color: ${({ theme }) => theme.colors.primary};
   font-size: ${({ theme }) => theme.fontSizes.lg};
   font-weight: 600;
   border: 2px solid ${({ theme }) => theme.colors.primary};
-  border-radius: ${({ theme }) => theme.borderRadius.lg};
+  border-radius: 50px;
   cursor: pointer;
   position: relative;
   overflow: hidden;
+  transition: all 0.3s ease;
 
   &::before {
     content: "";
@@ -127,7 +157,7 @@ const SecondaryButton = styled(motion.a)`
     width: 0;
     height: 100%;
     background: ${({ theme }) => theme.colors.primary};
-    transition: width ${({ theme }) => theme.animations.medium} ease;
+    transition: width 0.4s ease;
     z-index: -1;
   }
 
@@ -272,7 +302,7 @@ const Hero = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            View My Work
+            <span>View My Work</span>
           </PrimaryButton>
           <SecondaryButton
             href="#contact"

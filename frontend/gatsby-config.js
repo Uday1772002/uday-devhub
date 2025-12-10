@@ -1,9 +1,10 @@
 module.exports = {
   siteMetadata: {
-    title: "Jayaram Uday",
-    description: "A minimalist portfolio showcasing my work and expertise",
+    title: "Jayaram Uday - Software Engineer",
+    description:
+      "Portfolio of Jayaram Uday - Software Engineer specializing in Full-Stack Development, Cloud Architecture, and System Design",
     author: "@jayaramuday",
-    siteUrl: "https://yourportfolio.com",
+    siteUrl: "https://jayaramuday.com",
   },
   plugins: [
     `gatsby-plugin-styled-components`,
@@ -20,14 +21,15 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Minimalist Portfolio`,
-        short_name: `Portfolio`,
+        name: `Jayaram Uday Portfolio`,
+        short_name: `JU Portfolio`,
         start_url: `/`,
-        background_color: `#0a0a0a`,
-        theme_color: `#00d4ff`,
+        background_color: `#121212`,
+        theme_color: `#bb86fc`,
         display: `minimal-ui`,
-        icon: `src/images/icon.png`,
+        icon: `src/images/uday.jpeg`,
       },
     },
   ],
+  trailingSlash: `never`,
 };

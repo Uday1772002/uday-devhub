@@ -2,6 +2,14 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import techTreadsImg from "../images/TechTreads.png";
+import rag1Img from "../images/RAG1.png";
+import rag2Img from "../images/RAG2.png";
+import rag3Img from "../images/RAG3.png";
+import clinicHub1Img from "../images/ClinicHub1.png";
+import clinicHub2Img from "../images/ClinicHub2.jpeg";
+import clinicHub3Img from "../images/ClinicHub3.png";
+import clinicHub4Img from "../images/clinicHub4.jpeg";
 
 const ProjectsSection = styled.section`
   min-height: 100vh;
@@ -79,23 +87,7 @@ const ProjectImage = styled.a`
   border-radius: ${({ theme }) => theme.borderRadius.md};
   overflow: hidden;
   background: ${({ theme }) => theme.colors.surface};
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: ${({ theme }) => theme.colors.primary};
-    opacity: 0.3;
-    z-index: 2;
-    transition: opacity ${({ theme }) => theme.animations.medium} ease;
-  }
-
-  &:hover::before {
-    opacity: 0;
-  }
+  pointer-events: none; /* Allow carousel to receive hover events */
 
   @media (max-width: ${({ theme }) => theme.breakpoints.desktop}) {
     width: 100%;
@@ -110,6 +102,34 @@ const ProjectImagePlaceholder = styled.div`
   align-items: center;
   justify-content: center;
   font-size: ${({ theme }) => theme.fontSizes["5xl"]};
+  overflow: hidden;
+  position: relative;
+  pointer-events: auto; /* Enable hover events */
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: ${({ theme }) => theme.colors.primary};
+    opacity: 0.3;
+    z-index: 2;
+    transition: all ${({ theme }) => theme.animations.medium} ease;
+    pointer-events: none; /* Don't block carousel interactions */
+  }
+
+  &:hover::before {
+    background: rgba(255, 255, 255, 0.1);
+    opacity: 1;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 `;
 
 const ProjectContent = styled.div`
@@ -118,6 +138,8 @@ const ProjectContent = styled.div`
   position: relative;
   z-index: 2;
   text-align: right;
+  align-self: start;
+  margin-top: -2rem;
 
   ${ProjectCard}:nth-child(even) & {
     text-align: left;
@@ -128,6 +150,7 @@ const ProjectContent = styled.div`
     padding: ${({ theme }) => theme.spacing.lg};
     background: ${({ theme }) => theme.colors.surface};
     border-radius: ${({ theme }) => theme.borderRadius.md};
+    margin-top: 0;
   }
 `;
 
@@ -139,8 +162,8 @@ const ProjectLabel = styled.p`
 `;
 
 const ProjectTitle = styled.h3`
-  font-size: ${({ theme }) => theme.fontSizes["2xl"]};
-  margin-bottom: ${({ theme }) => theme.spacing.md};
+  font-size: ${({ theme }) => theme.fontSizes.xl};
+  margin-bottom: ${({ theme }) => theme.spacing.sm};
   color: ${({ theme }) => theme.colors.text};
   font-weight: 600;
 
@@ -156,26 +179,31 @@ const ProjectTitle = styled.h3`
 `;
 
 const ProjectDescription = styled.div`
-  background: ${({ theme }) => theme.colors.surface};
-  padding: ${({ theme }) => theme.spacing.lg};
-  border-radius: ${({ theme }) => theme.borderRadius.md};
-  font-size: ${({ theme }) => theme.fontSizes.base};
+  font-size: ${({ theme }) => theme.fontSizes.sm};
   color: ${({ theme }) => theme.colors.textSecondary};
-  line-height: 1.6;
+  line-height: 1.5;
   margin-bottom: ${({ theme }) => theme.spacing.md};
-  box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.3);
+  padding: ${({ theme }) => theme.spacing.md} ${({ theme }) => theme.spacing.lg};
+  background: ${({ theme }) => theme.colors.surface};
+  border-radius: ${({ theme }) => theme.borderRadius.md};
+  box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.7);
+  max-height: 110px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    background: transparent;
-    padding: 0;
-    box-shadow: none;
+    padding: ${({ theme }) => theme.spacing.md};
+    max-height: none;
+    -webkit-line-clamp: unset;
   }
 `;
 
 const TechStack = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  gap: ${({ theme }) => theme.spacing.md};
+  gap: ${({ theme }) => theme.spacing.sm};
   list-style: none;
   margin-bottom: ${({ theme }) => theme.spacing.md};
   justify-content: flex-end;
@@ -189,10 +217,15 @@ const TechStack = styled.ul`
   }
 `;
 
-const TechItem = styled.li`
-  font-size: ${({ theme }) => theme.fontSizes.sm};
-  color: ${({ theme }) => theme.colors.textSecondary};
+const TechTag = styled.span`
+  padding: 0.4rem 0.8rem;
+  background: ${({ theme }) => theme.colors.surface};
+  color: ${({ theme }) => theme.colors.primary};
+  border-radius: 4px;
+  font-size: ${({ theme }) => theme.fontSizes.xs};
   font-family: ${({ theme }) => theme.fonts.mono};
+  border: 1px solid rgba(187, 134, 252, 0.2);
+  backdrop-filter: blur(10px);
 `;
 
 const ProjectLinks = styled.div`
@@ -208,7 +241,6 @@ const ProjectLinks = styled.div`
     justify-content: flex-start;
   }
 `;
-
 const IconLink = styled.a`
   color: ${({ theme }) => theme.colors.textSecondary};
   transition: color ${({ theme }) => theme.animations.fast} ease;
@@ -226,7 +258,7 @@ const IconLink = styled.a`
 
 const ShowMoreButton = styled(motion.button)`
   display: block;
-  margin: ${({ theme }) => theme.spacing["3xl"]} auto 0;
+  margin: ${({ theme }) => theme.spacing["3xl"]} 0 0 auto;
   padding: ${({ theme }) => theme.spacing.md} ${({ theme }) => theme.spacing.xl};
   background: transparent;
   color: ${({ theme }) => theme.colors.primary};
@@ -245,42 +277,112 @@ const ShowMoreButton = styled(motion.button)`
 
 const projects = [
   {
-    title: "E-Commerce Platform",
+    title: "TechTreads",
     description:
-      "A full-stack e-commerce solution with real-time inventory management, secure payment integration, and advanced analytics dashboard. Built with modern technologies to handle high traffic and ensure seamless user experience.",
-    tech: ["React", "Node.js", "MongoDB", "Stripe", "Redis"],
-    github: "#",
-    demo: "#",
-    icon: "🛍️",
-  },
-  {
-    title: "Task Management App",
-    description:
-      "Collaborative task management tool with real-time updates, team collaboration features, and intelligent priority sorting. Designed to help teams stay organized and productive.",
-    tech: ["Next.js", "TypeScript", "PostgreSQL", "Socket.io"],
-    github: "#",
-    demo: "#",
-    icon: "✓",
-  },
-  {
-    title: "Analytics Dashboard",
-    description:
-      "Real-time analytics platform with interactive data visualization, custom reporting, and predictive insights using machine learning algorithms.",
-    tech: ["Gatsby", "GraphQL", "D3.js", "Python", "AWS"],
-    github: "#",
-    demo: "#",
-    icon: "📊",
-  },
-  {
-    title: "Social Media Platform",
-    description:
-      "Modern social networking platform with user profiles, real-time messaging, and content discovery algorithms. Supports millions of users with scalable architecture.",
-    tech: ["React", "Express", "Socket.io", "Redis", "Docker"],
-    github: "#",
-    demo: "#",
+      "High-performance social platform with nested comments, GraphQL authentication, and JWT-based access control. Achieved sub-50ms API response times using Hono and Bun runtime with full type-safety.",
+    tech: [
+      "Hono",
+      "Bun",
+      "Drizzle ORM",
+      "Tanstack Router",
+      "Tanstack Query",
+      "GraphQL",
+      "Docker",
+      "Zod",
+      "PostgreSQL",
+    ],
+    github: "https://github.com/Uday1772002/tech-treads",
+    demo: null,
     icon: "💬",
+    image: techTreadsImg,
+  },
+  {
+    title: "RAG Document Analysis System",
+    description:
+      "AI-powered document analysis using Retrieval-Augmented Generation for intelligent querying. Built OCR engine with Tesseract for PDF processing. Reduced search time by 90% with sub-3 second responses.",
+    tech: [
+      "FastAPI",
+      "Streamlit",
+      "LangChain",
+      "ChromaDB",
+      "OCR (Tesseract)",
+      "Sentence Transformers",
+      "PyPDF2",
+      "Python",
+    ],
+    github: "https://github.com/Uday1772002/RAG-System",
+    demo: null,
+    icon: "📄",
+    images: [rag1Img, rag2Img, rag3Img],
+  },
+  {
+    title: "ClinicHub",
+    description:
+      "Comprehensive healthcare management platform with role-based authentication (Admin, Doctor, Patient), real-time appointment updates via WebSocket, and automated PDF report generation. Features audit logging, email notifications, and analytics dashboard.",
+    tech: [
+      "Node.js",
+      "Express",
+      "MongoDB",
+      "JWT",
+      "WebSocket",
+      "Docker",
+      "Swagger",
+      "Winston",
+    ],
+    github: "https://github.com/Uday1772002/Clinic_Hub",
+    demo: null,
+    icon: "🏥",
+    images: [clinicHub1Img, clinicHub2Img, clinicHub3Img, clinicHub4Img],
   },
 ];
+
+const ImageCarousel = ({ images }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const intervalRef = React.useRef(null);
+
+  if (!images || images.length === 0) return null;
+
+  const startCarousel = () => {
+    if (intervalRef.current) return;
+
+    intervalRef.current = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+    }, 1000);
+  };
+
+  const stopCarousel = () => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
+    setCurrentIndex(0);
+  };
+
+  return (
+    <div
+      onMouseEnter={startCarousel}
+      onMouseLeave={stopCarousel}
+      style={{
+        width: "100%",
+        height: "100%",
+        cursor: "pointer",
+        position: "relative",
+        pointerEvents: "auto",
+      }}
+    >
+      <img
+        src={images[currentIndex]}
+        alt="Project screenshot"
+        style={{
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          display: "block",
+        }}
+      />
+    </div>
+  );
+};
 
 const Projects = () => {
   const [showAll, setShowAll] = useState(false);
@@ -290,15 +392,6 @@ const Projects = () => {
   });
 
   const visibleProjects = showAll ? projects : projects.slice(0, 2);
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6 },
-    },
-  };
 
   return (
     <ProjectsSection id="projects" ref={ref}>
@@ -317,11 +410,10 @@ const Projects = () => {
             {visibleProjects.map((project, index) => (
               <ProjectCard
                 key={project.title}
-                variants={itemVariants}
-                initial="hidden"
-                animate={inView ? "visible" : "hidden"}
-                exit="hidden"
-                transition={{ delay: index * 0.2 }}
+                initial={{ opacity: 0, y: 50 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                exit={{ opacity: 0, y: 50 }}
+                transition={{ delay: index * 0.1, duration: 0.5 }}
               >
                 <ProjectImage
                   href={project.demo}
@@ -329,7 +421,13 @@ const Projects = () => {
                   rel="noopener noreferrer"
                 >
                   <ProjectImagePlaceholder>
-                    {project.icon}
+                    {project.images ? (
+                      <ImageCarousel images={project.images} />
+                    ) : project.image ? (
+                      <img src={project.image} alt={project.title} />
+                    ) : (
+                      project.icon
+                    )}
                   </ProjectImagePlaceholder>
                 </ProjectImage>
 
@@ -347,7 +445,7 @@ const Projects = () => {
                   <ProjectDescription>{project.description}</ProjectDescription>
                   <TechStack>
                     {project.tech.map((tech) => (
-                      <TechItem key={tech}>{tech}</TechItem>
+                      <TechTag key={tech}>{tech}</TechTag>
                     ))}
                   </TechStack>
                   <ProjectLinks>
@@ -369,26 +467,28 @@ const Projects = () => {
                         <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
                       </svg>
                     </IconLink>
-                    <IconLink
-                      href={project.demo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label="External Link"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
+                    {project.demo && (
+                      <IconLink
+                        href={project.demo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="External Link"
                       >
-                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                        <polyline points="15 3 21 3 21 9"></polyline>
-                        <line x1="10" y1="14" x2="21" y2="3"></line>
-                      </svg>
-                    </IconLink>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                          <polyline points="15 3 21 3 21 9"></polyline>
+                          <line x1="10" y1="14" x2="21" y2="3"></line>
+                        </svg>
+                      </IconLink>
+                    )}
                   </ProjectLinks>
                 </ProjectContent>
               </ProjectCard>
@@ -405,7 +505,7 @@ const Projects = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            Show More Projects
+            Show More
           </ShowMoreButton>
         )}
       </Container>

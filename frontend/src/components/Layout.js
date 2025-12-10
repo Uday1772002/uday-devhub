@@ -5,6 +5,7 @@ import { theme } from "../styles/theme";
 import { GlobalStyles } from "../styles/GlobalStyles";
 import Navigation from "./Navigation";
 import SocialSidebars from "./SocialSidebars";
+import Loader from "./Loader";
 
 const LayoutWrapper = styled.div`
   min-height: 100vh;
@@ -68,15 +69,21 @@ const MainContent = styled.main`
 `;
 
 const Layout = ({ children }) => {
-  const [mounted, setMounted] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    setMounted(true);
+    // Simulate minimum loading time of 2-3 seconds
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2500);
+
+    return () => clearTimeout(timer);
   }, []);
 
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
+      <Loader isLoaded={!isLoading} />
       <LayoutWrapper>
         <BackgroundGradient />
         <GridOverlay />
