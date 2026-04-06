@@ -103,7 +103,7 @@ const SkillItem = styled.li`
   font-family: ${({ theme }) => theme.fonts.mono};
 
   &::before {
-    content: "▹";
+    content: "—";
     color: ${({ theme }) => theme.colors.primary};
     margin-right: ${({ theme }) => theme.spacing.xs};
   }
@@ -174,14 +174,14 @@ const ImageBorder = styled.div`
 `;
 
 const skills = [
-  "JavaScript (ES6+)",
-  "TypeScript",
-  "React",
-  "Node.js",
-  "Gatsby",
-  "Next.js",
-  "MongoDB",
-  "PostgreSQL",
+  "JavaScript / TypeScript",
+  "Node.js / Express",
+  "Python / FastAPI",
+  "PostgreSQL / MongoDB / Redis",
+  "Docker / Kubernetes",
+  "Kafka / WebSocket",
+  "AWS / GCP",
+  "GraphQL / REST",
 ];
 
 const About = () => {
@@ -209,41 +209,24 @@ const About = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <Paragraph>
-              Hello! I'm Jayaram, a{" "}
-              <span className="highlight">Software Engineer</span> passionate
-              about building scalable web applications and solving complex
-              problems. My development journey started in 2020 at{" "}
-              <span className="highlight">BML Munjal University</span>, where I
-              discovered my love for creating things that live on the internet.
+              I'm Jayaram — a software engineer out of{" "}
+              <span className="highlight">BML Munjal University</span> who likes
+              working close to the metal. APIs, event-driven architectures, and
+              cloud infrastructure are where I spend most of my time.
             </Paragraph>
 
             <Paragraph>
-              I'm certified as a{" "}
-              <span className="highlight">Google Associate Cloud Engineer</span>{" "}
-              and{" "}
-              <span className="highlight">
-                AWS Solutions Architect Associate
-              </span>
-              . Currently, I'm sharpening my data structures and algorithms
-              skills, building side projects like{" "}
-              <span className="highlight">TechTreads</span> (a high-performance
-              blogging platform) and a RAG-based document analysis system, while
-              exploring new opportunities in software engineering.
-            </Paragraph>
-
-            <Paragraph>
-              When I'm not coding, you'll find me grinding LeetCode problems (
-              <span className="highlight">240+ solved</span> so far),
-              experimenting with new tech stacks, or staying active at the gym.
-              I was a finalist at{" "}
-              <span className="highlight">Smart India Hackathon 2023</span> and
-              Google Code Jam India.
+              Certified on both <span className="highlight">AWS</span> and{" "}
+              <span className="highlight">Google Cloud</span>. Active in open
+              source with{" "}
+              <span className="highlight">485+ GitHub contributions</span> this
+              past year. Top 5 finalist at{" "}
+              <span className="highlight">Smart India Hackathon 2023</span>,{" "}
+              cleared Google Code Jam India, and 300+ problems deep on LeetCode.
             </Paragraph>
 
             <div>
-              <SkillsTitle>
-                Here are a few technologies I've been working with recently:
-              </SkillsTitle>
+              <SkillsTitle>My backend toolkit:</SkillsTitle>
               <SkillsList>
                 {skills.map((skill, index) => (
                   <SkillItem key={index}>{skill}</SkillItem>

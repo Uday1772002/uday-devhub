@@ -23,10 +23,23 @@ export default IndexPage;
 
 export const Head = () => (
   <>
-    <title>Jayaram Uday - Portfolio</title>
+    <title>Jayaram Uday — Software Engineer</title>
     <meta
       name="description"
-      content="A minimalist portfolio showcasing my work and expertise"
+      content="Software engineer building APIs, microservices, and cloud-native infrastructure"
+    />
+    <meta property="og:title" content="Jayaram Uday — Software Engineer" />
+    <meta
+      property="og:description"
+      content="Software engineer building APIs, microservices, and cloud-native infrastructure"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://jayaramuday.com" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Jayaram Uday — Software Engineer" />
+    <meta
+      name="twitter:description"
+      content="Software engineer building APIs, microservices, and cloud-native infrastructure"
     />
   </>
 );

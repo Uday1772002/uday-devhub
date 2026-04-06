@@ -12,46 +12,18 @@ const LayoutWrapper = styled.div`
   position: relative;
 `;
 
-const BackgroundGradient = styled.div`
-  position: fixed;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(
-    circle at 50% 50%,
-    rgba(255, 255, 255, 0.02) 0%,
-    rgba(255, 255, 255, 0.01) 35%,
-    transparent 70%
-  );
-  animation: rotate 40s linear infinite;
-  pointer-events: none;
-  z-index: 0;
-
-  @keyframes rotate {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-`;
-
-const GridOverlay = styled.div`
+const NoiseOverlay = styled.div`
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: linear-gradient(
-      rgba(255, 255, 255, 0.01) 1px,
-      transparent 1px
-    ),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
-  background-size: 50px 50px;
+  opacity: 0.03;
   pointer-events: none;
   z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
 `;
 
 const MainContent = styled.main`
@@ -74,7 +46,7 @@ const Layout = ({ children }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 3000);
+    }, 2400);
 
     return () => clearTimeout(timer);
   }, []);
@@ -84,8 +56,7 @@ const Layout = ({ children }) => {
       <GlobalStyles />
       <Loader isLoaded={!isLoading} />
       <LayoutWrapper>
-        <BackgroundGradient />
-        <GridOverlay />
+        <NoiseOverlay />
         <Navigation />
         <SocialSidebars />
         <MainContent>{children}</MainContent>

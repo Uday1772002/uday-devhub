@@ -138,46 +138,43 @@ const JobPoint = styled.li`
   position: relative;
 
   &::before {
-    content: "▹";
+    content: "—";
     position: absolute;
     left: 0;
     color: ${({ theme }) => theme.colors.primary};
-    font-size: ${({ theme }) => theme.fontSizes.lg};
+    font-size: ${({ theme }) => theme.fontSizes.base};
   }
 `;
 
 const experiences = [
   {
-    company: "Independent",
-    title: "Software Developer",
-    duration: "Mar 2024 - Present",
+    company: "Open Source & Freelance",
+    title: "Full Stack Developer",
+    duration: "Mar 2025 - Present",
     points: [
-      "Developed TechTreads, a high-performance social platform using Hono and Bun, achieving sub-50ms API response times with GraphQL authentication",
-      "Built RAG document analysis system with FastAPI and LangChain, reducing document search times by 90% through AI-powered semantic retrieval",
-      "Earned AWS Solutions Architect Associate and Google Cloud Associate Engineer certifications",
-      "Solved 240+ LeetCode problems in Python and C++, strengthening data structures and algorithms expertise",
+      "Shipped merged PRs to BizrAI across POS, invoicing, and customer modules — React 19, Redux Toolkit, Node.js, MongoDB",
+      "Built ConvoFlow, a real-time chat app with sub-100ms delivery, Socket.IO, and Gemini AI-powered smart replies",
+      "485+ GitHub contributions across 12 months, actively maintaining two open-source MERN projects",
     ],
   },
   {
     company: "Agaamin Technologies",
-    title: "Software Engineer",
+    title: "Software Engineer (Contract)",
     duration: "Sep 2024 - Mar 2025",
     points: [
-      "Developed decentralized real-time messaging system using Nostr protocol with end-to-end encryption",
-      "Built backend infrastructure with Node.js handling 10,000+ daily active users",
-      "Architected CI/CD pipelines using Cloud Build and Jenkins, reducing release cycles by 40%",
-      "Integrated Apache Kafka for real-time data streaming and improved user engagement by 30%",
+      "Sole backend engineer on a decentralized student network — Nostr protocol, cryptographic keypairs, payment integrations",
+      "Stood up Kafka event-streaming across 3 microservices, cutting inter-service latency by 45%",
+      "Automated CI/CD with Cloud Build and Jenkins, trimming integration overhead by 40%",
     ],
   },
   {
-    company: "Appfoster",
-    title: "Software Engineer Intern",
+    company: "Appfoster Technologies",
+    title: "Flutter Developer (Intern)",
     duration: "Mar 2024 - Aug 2024",
     points: [
-      "Led development of Flutter-based HRMS platform serving 200+ employees with direct stakeholder collaboration",
-      "Optimized API performance using Redis caching and async processing, reducing response time by 30% (500ms to 350ms)",
-      "Implemented automated testing frameworks and SonarQube analysis, reducing post-deployment defects by 20%",
-      "Set up Grafana monitoring dashboards for continuous performance tracking and alerting",
+      "Delivered 4 HRMS modules for 200+ employees — dashboard, profile, PDF vault, notifications",
+      "Tuned API response times from 500ms to 350ms with Redis caching and cursor-based pagination",
+      "Integrated SonarQube and Grafana monitoring, reducing post-deployment defects by 20%",
     ],
   },
   {
@@ -185,10 +182,8 @@ const experiences = [
     title: "Software Engineer Intern",
     duration: "May 2022 - Jul 2022",
     points: [
-      "Developed automated unit testing service to reduce manual testing time and accelerate bug identification",
-      "Added new features and conducted thorough bug testing to ensure application functionality",
-      "Created visualization tools for daily test reports using C++, JavaScript, and VMWare",
-      "Improved development workflow efficiency and reduced manual testing overhead for the team",
+      "Built automated unit testing services to cut manual QA time and surface bugs earlier",
+      "Created daily test-report visualizations with C++, JavaScript, and VMWare tooling",
     ],
   },
 ];

@@ -1,17 +1,17 @@
 export const theme = {
   colors: {
-    primary: "#bb86fc",
-    secondary: "#666666",
-    accent: "#e0e0e0",
-    background: "#121212",
-    surface: "#1e1e1e",
-    surfaceLight: "#2d2d2d",
-    text: "#ffffff",
-    textSecondary: "#b3b3b3",
-    textMuted: "#808080",
-    gradient: "linear-gradient(135deg, #bb86fc 0%, #9d5dfc 50%, #7f3dfc 100%)",
+    primary: "#c8a96e",
+    secondary: "#2a2520",
+    accent: "#e8d5b5",
+    background: "#0c0c0c",
+    surface: "#141210",
+    surfaceLight: "#1e1c18",
+    text: "#d4c5a9",
+    textSecondary: "#8a7e6b",
+    textMuted: "#4a4540",
+    gradient: "linear-gradient(135deg, #c8a96e 0%, #e8d5b5 100%)",
     gradientSubtle:
-      "linear-gradient(135deg, rgba(187,134,252,0.05) 0%, rgba(157,93,252,0.05) 50%, rgba(127,61,252,0.05) 100%)",
+      "linear-gradient(135deg, rgba(200,169,110,0.04) 0%, rgba(232,213,181,0.02) 100%)",
   },
   fonts: {
     main: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',

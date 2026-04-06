@@ -224,7 +224,7 @@ const TechTag = styled.span`
   border-radius: 4px;
   font-size: ${({ theme }) => theme.fontSizes.xs};
   font-family: ${({ theme }) => theme.fonts.mono};
-  border: 1px solid rgba(187, 134, 252, 0.2);
+  border: 1px solid ${({ theme }) => theme.colors.surfaceLight};
   backdrop-filter: blur(10px);
 `;
 
@@ -279,35 +279,32 @@ const projects = [
   {
     title: "TechTreads",
     description:
-      "High-performance social platform with nested comments, GraphQL authentication, and JWT-based access control. Achieved sub-50ms API response times using Hono and Bun runtime with full type-safety.",
+      "Hacker News-style discussion platform. OAuth + username/password auth, nested comments, upvoting, cursor-based pagination. End-to-end TypeScript with Zod validation and Dockerised multi-stage builds.",
     tech: [
       "Hono",
       "Bun",
-      "Drizzle ORM",
-      "Tanstack Router",
-      "Tanstack Query",
-      "GraphQL",
-      "Docker",
-      "Zod",
       "PostgreSQL",
+      "Drizzle ORM",
+      "GraphQL",
+      "Zod",
+      "TanStack",
+      "Docker",
     ],
     github: "https://github.com/Uday1772002/tech-treads",
-    demo: null,
+    demo: "https://tech-treads.onrender.com",
     icon: "💬",
     image: techTreadsImg,
   },
   {
-    title: "RAG Document Analysis System",
+    title: "RAG Document Analysis",
     description:
-      "AI-powered document analysis using Retrieval-Augmented Generation for intelligent querying. Built OCR engine with Tesseract for PDF processing. Reduced search time by 90% with sub-3 second responses.",
+      "Semantic search over documents using retrieval-augmented generation. OCR pipeline for PDFs, vector embeddings via ChromaDB, sub-3s query responses.",
     tech: [
       "FastAPI",
-      "Streamlit",
       "LangChain",
       "ChromaDB",
-      "OCR (Tesseract)",
-      "Sentence Transformers",
-      "PyPDF2",
+      "Tesseract OCR",
+      "Streamlit",
       "Python",
     ],
     github: "https://github.com/Uday1772002/RAG-System",
@@ -318,7 +315,7 @@ const projects = [
   {
     title: "ClinicHub",
     description:
-      "Comprehensive healthcare management platform with role-based authentication (Admin, Doctor, Patient), real-time appointment updates via WebSocket, and automated PDF report generation. Features audit logging, email notifications, and analytics dashboard.",
+      "Healthcare management system with RBAC for admins, doctors, and patients. Real-time WebSocket appointment events, JWT auth with bcrypt, PDF report generation, and audit logging.",
     tech: [
       "Node.js",
       "Express",
@@ -326,11 +323,10 @@ const projects = [
       "JWT",
       "WebSocket",
       "Docker",
-      "Swagger",
-      "Winston",
+      "PDFKit",
     ],
     github: "https://github.com/Uday1772002/Clinic_Hub",
-    demo: null,
+    demo: "https://clinic-hub-lcpq.onrender.com",
     icon: "🏥",
     images: [clinicHub1Img, clinicHub2Img, clinicHub3Img, clinicHub4Img],
   },

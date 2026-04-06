@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 
@@ -10,95 +10,50 @@ const HeroSection = styled.section`
   position: relative;
   padding: ${({ theme }) => theme.spacing["2xl"]}
     ${({ theme }) => theme.spacing.lg};
-  overflow: hidden;
-
-  // Animated gradient mesh background
-  &::before {
-    content: "";
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(
-        circle at 20% 50%,
-        rgba(187, 134, 252, 0.08) 0%,
-        transparent 50%
-      ),
-      radial-gradient(
-        circle at 80% 80%,
-        rgba(187, 134, 252, 0.05) 0%,
-        transparent 50%
-      );
-    animation: meshMove 20s ease-in-out infinite;
-    pointer-events: none;
-  }
-
-  @keyframes meshMove {
-    0%,
-    100% {
-      transform: translate(0, 0) rotate(0deg);
-    }
-    50% {
-      transform: translate(-5%, -5%) rotate(5deg);
-    }
-  }
 `;
 
 const HeroContent = styled.div`
-  max-width: 900px;
+  max-width: 720px;
   width: 100%;
   z-index: 2;
-  text-align: left;
 `;
 
-const GlitchWrapper = styled.div`
-  position: relative;
-  display: inline-block;
+const Greeting = styled(motion.p)`
+  font-family: ${({ theme }) => theme.fonts.mono};
+  font-size: ${({ theme }) => theme.fontSizes.sm};
+  color: ${({ theme }) => theme.colors.primary};
+  margin-bottom: ${({ theme }) => theme.spacing.md};
+  letter-spacing: 0.05em;
 `;
 
 const MainTitle = styled(motion.h1)`
   font-size: clamp(
-    ${({ theme }) => theme.fontSizes["4xl"]},
-    8vw,
-    ${({ theme }) => theme.fontSizes["7xl"]}
+    ${({ theme }) => theme.fontSizes["3xl"]},
+    7vw,
+    ${({ theme }) => theme.fontSizes["6xl"]}
   );
-  font-weight: 800;
+  font-weight: 600;
   line-height: 1.1;
-  margin-bottom: ${({ theme }) => theme.spacing.md};
-  background: linear-gradient(
-    135deg,
-    ${({ theme }) => theme.colors.primary},
-    ${({ theme }) => theme.colors.accent}
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  position: relative;
-  display: inline-block;
+  margin-bottom: ${({ theme }) => theme.spacing.sm};
+  color: ${({ theme }) => theme.colors.text};
 `;
 
 const Subtitle = styled(motion.h2)`
   font-size: clamp(
-    ${({ theme }) => theme.fontSizes.xl},
-    3vw,
-    ${({ theme }) => theme.fontSizes["3xl"]}
+    ${({ theme }) => theme.fontSizes["2xl"]},
+    4vw,
+    ${({ theme }) => theme.fontSizes["4xl"]}
   );
-  color: ${({ theme }) => theme.colors.textSecondary};
-  font-weight: 400;
-  margin-bottom: ${({ theme }) => theme.spacing.lg};
-  max-width: 800px;
-
-  span {
-    color: ${({ theme }) => theme.colors.primary};
-    font-weight: 600;
-  }
+  color: ${({ theme }) => theme.colors.textMuted};
+  font-weight: 500;
+  margin-bottom: ${({ theme }) => theme.spacing.xl};
+  line-height: 1.2;
 `;
 
 const Description = styled(motion.p)`
-  font-size: ${({ theme }) => theme.fontSizes.lg};
-  color: ${({ theme }) => theme.colors.textMuted};
-  max-width: 600px;
+  font-size: ${({ theme }) => theme.fontSizes.base};
+  color: ${({ theme }) => theme.colors.textSecondary};
+  max-width: 520px;
   margin-bottom: ${({ theme }) => theme.spacing.xl};
   line-height: 1.8;
 `;
@@ -107,76 +62,46 @@ const CTAContainer = styled(motion.div)`
   display: flex;
   gap: ${({ theme }) => theme.spacing.md};
   flex-wrap: wrap;
-  justify-content: flex-start;
 `;
 
 const PrimaryButton = styled(motion.a)`
-  padding: ${({ theme }) => theme.spacing.md} ${({ theme }) => theme.spacing.xl};
-  background: ${({ theme }) => theme.colors.primary};
-  color: ${({ theme }) => theme.colors.background};
-  font-size: ${({ theme }) => theme.fontSizes.lg};
-  font-weight: 600;
-  border-radius: 50px;
+  padding: ${({ theme }) => theme.spacing.sm} ${({ theme }) => theme.spacing.lg};
+  background: transparent;
+  color: ${({ theme }) => theme.colors.primary};
+  font-size: ${({ theme }) => theme.fontSizes.sm};
+  font-family: ${({ theme }) => theme.fonts.mono};
+  border: 1px solid ${({ theme }) => theme.colors.primary};
   cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(187, 134, 252, 0.3);
   transition: all 0.3s ease;
 
   &:hover {
-    background: ${({ theme }) => theme.colors.text};
+    background: ${({ theme }) => theme.colors.primary};
     color: ${({ theme }) => theme.colors.background};
-    box-shadow: 0 15px 40px rgba(187, 134, 252, 0.5);
-    transform: translateY(-2px);
-  }
-
-  span {
-    position: relative;
-    z-index: 1;
   }
 `;
 
 const SecondaryButton = styled(motion.a)`
-  padding: ${({ theme }) => theme.spacing.md} ${({ theme }) => theme.spacing.xl};
+  padding: ${({ theme }) => theme.spacing.sm} ${({ theme }) => theme.spacing.lg};
   background: transparent;
-  color: ${({ theme }) => theme.colors.primary};
-  font-size: ${({ theme }) => theme.fontSizes.lg};
-  font-weight: 600;
-  border: 2px solid ${({ theme }) => theme.colors.primary};
-  border-radius: 50px;
+  color: ${({ theme }) => theme.colors.textSecondary};
+  font-size: ${({ theme }) => theme.fontSizes.sm};
+  font-family: ${({ theme }) => theme.fonts.mono};
+  border: 1px solid ${({ theme }) => theme.colors.surfaceLight};
   cursor: pointer;
-  position: relative;
-  overflow: hidden;
   transition: all 0.3s ease;
 
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 100%;
-    background: ${({ theme }) => theme.colors.primary};
-    transition: width 0.4s ease;
-    z-index: -1;
-  }
-
-  &:hover::before {
-    width: 100%;
-  }
-
   &:hover {
-    color: ${({ theme }) => theme.colors.background};
-    transform: translateY(-2px);
+    border-color: ${({ theme }) => theme.colors.textSecondary};
+    color: ${({ theme }) => theme.colors.text};
   }
 `;
 
-const FloatingShape = styled(motion.div)`
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.3;
-  pointer-events: none;
+const Accent = styled.span`
+  display: block;
+  width: 48px;
+  height: 2px;
+  background: ${({ theme }) => theme.colors.primary};
+  margin-top: ${({ theme }) => theme.spacing.sm};
 `;
 
 const ScrollIndicator = styled(motion.div)`
@@ -187,109 +112,62 @@ const ScrollIndicator = styled(motion.div)`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: ${({ theme }) => theme.spacing.sm};
+  gap: ${({ theme }) => theme.spacing.xs};
   cursor: pointer;
 `;
 
-const ScrollText = styled.span`
-  font-size: ${({ theme }) => theme.fontSizes.sm};
-  color: ${({ theme }) => theme.colors.textMuted};
-  text-transform: uppercase;
-  letter-spacing: 2px;
-`;
-
 const ScrollLine = styled(motion.div)`
-  width: 2px;
-  height: 40px;
-  background: linear-gradient(
-    to bottom,
-    ${({ theme }) => theme.colors.primary},
-    transparent
-  );
+  width: 1px;
+  height: 48px;
+  background: ${({ theme }) => theme.colors.textMuted};
 `;
 
 const Hero = () => {
-  const containerRef = useRef(null);
-
   const scrollToNext = () => {
-    const nextSection = document.querySelector("#about");
-    if (nextSection) {
-      nextSection.scrollIntoView({ behavior: "smooth" });
-    }
+    document.querySelector("#about")?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <HeroSection id="home" ref={containerRef}>
-      <FloatingShape
-        style={{
-          top: "10%",
-          left: "10%",
-          width: "300px",
-          height: "300px",
-          background: "rgba(255, 255, 255, 0.03)",
-        }}
-        animate={{
-          y: [0, 30, 0],
-          x: [0, 20, 0],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
-      <FloatingShape
-        style={{
-          bottom: "20%",
-          right: "15%",
-          width: "400px",
-          height: "400px",
-          background: "rgba(255, 255, 255, 0.02)",
-        }}
-        animate={{
-          y: [0, -40, 0],
-          x: [0, -30, 0],
-        }}
-        transition={{
-          duration: 10,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
-
+    <HeroSection id="home">
       <HeroContent>
-        <GlitchWrapper>
-          <MainTitle
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          >
-            Hi, I'm Jayaram Uday
-          </MainTitle>
-        </GlitchWrapper>
+        <Greeting
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6 }}
+        >
+          Hello, my name is
+        </Greeting>
+
+        <MainTitle
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+        >
+          Jayaram Uday
+          <Accent />
+        </MainTitle>
 
         <Subtitle
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+          transition={{ duration: 0.6, delay: 0.2 }}
         >
-          I craft <span>digital experiences</span> that inspire
+          Software engineer. Systems thinker.
         </Subtitle>
 
         <Description
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+          transition={{ duration: 0.6, delay: 0.3 }}
         >
-          A passionate developer specializing in building exceptional web
-          applications with modern technologies. Turning ideas into elegant,
-          functional solutions.
+          I design APIs, wire up microservices, and keep infrastructure humming.
+          Cloud-certified, open-source active, always building.
         </Description>
 
         <CTAContainer
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+          transition={{ duration: 0.6, delay: 0.4 }}
         >
           <PrimaryButton
             href="#projects"
@@ -299,10 +177,8 @@ const Hero = () => {
                 .querySelector("#projects")
                 ?.scrollIntoView({ behavior: "smooth" });
             }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
           >
-            <span>View My Work</span>
+            View my work
           </PrimaryButton>
           <SecondaryButton
             href="#contact"
@@ -312,10 +188,8 @@ const Hero = () => {
                 .querySelector("#contact")
                 ?.scrollIntoView({ behavior: "smooth" });
             }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
           >
-            Get In Touch
+            Get in touch
           </SecondaryButton>
         </CTAContainer>
       </HeroContent>
@@ -324,12 +198,11 @@ const Hero = () => {
         onClick={scrollToNext}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.2 }}
+        transition={{ delay: 0.8 }}
       >
-        <ScrollText>Scroll</ScrollText>
         <ScrollLine
-          animate={{ scaleY: [1, 1.5, 1] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
+          animate={{ scaleY: [0.5, 1, 0.5] }}
+          transition={{ duration: 2, repeat: Infinity }}
         />
       </ScrollIndicator>
     </HeroSection>

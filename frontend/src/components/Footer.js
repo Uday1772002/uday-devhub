@@ -26,10 +26,7 @@ const Footer = () => {
   return (
     <FooterContainer>
       <FooterContent>
-        <FooterText>
-          Designed & Built with <span>❤️</span> by Jayaram Uday ©{" "}
-          {new Date().getFullYear()}
-        </FooterText>
+        <FooterText>Jayaram Uday · {new Date().getFullYear()}</FooterText>
       </FooterContent>
     </FooterContainer>
   );
